@@ -1,8 +1,9 @@
 {
-  "name": "knexpipeline.ts",
-  "version": "1.0.0",
+  "name": "knex-pipeline",
+  "version": "1.0.1",
   "main": "index.js",
   "license": "MIT",
+  "private": false,
   "scripts": {
     "test": "mocha --require ts-node/register test/**.spec.ts"
   },
