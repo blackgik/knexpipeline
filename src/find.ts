@@ -9,6 +9,7 @@ export const findAllIemsNoPopulate = async (
 	options.cols = options.cols ? options.cols : [];
 	options.offset = options.offset ? options.offset : 0;
 	options.limit = options.limit ? options.limit : 0;
+	options.aggregations = options.aggregations ? options.aggregations : [];
 
 	let query = dbconnection.select(options.cols).from(options.table);
 
@@ -60,6 +61,14 @@ export const findAllIemsNoPopulate = async (
 			options.timeFilters.fromTime,
 			options.timeFilters.toTime
 		]);
+	}
+
+	if (options.aggregations.length > 0) {
+		options.aggregations.forEach((agg) => {
+			const raw = `${agg.aggType}(${agg.col}) as ${agg.alias}`;
+
+			query = query.select(dbconnection.raw(raw));
+		});
 	}
 
 	if (needsPagination) {

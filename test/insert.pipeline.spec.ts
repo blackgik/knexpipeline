@@ -1,10 +1,10 @@
 import knex from "knex";
-import { randomUUID } from "crypto";
+import { randomUUID, UUID } from "crypto";
 import { expect } from "chai";
 import { Pipeline } from "../src/index";
 
 describe("Insertion Pipeline Test", () => {
-	let pipeline: Pipeline;
+	let pipeline: Pipeline, uuid: UUID, uuid2: UUID;
 
 	before(() => {
 		const connection = knex({
@@ -13,17 +13,20 @@ describe("Insertion Pipeline Test", () => {
 				host: "localhost",
 				port: 3306,
 				user: "root",
-				password: "ben@newton#1996#",
+				password: "odogwuPassword",
 				database: "todos"
 			}
 		});
 		const module: string = "mysql";
 		pipeline = new Pipeline(connection, module);
+
+		uuid = randomUUID();
+		uuid2 = randomUUID();
 	});
 
 	it("should create a single task", async () => {
 		const insertData = await pipeline.insert(
-			{ id: randomUUID(), name: "Dishes", description: "Wash the dishes" },
+			{ id: uuid, name: "Dishes", description: "Wash the dishes" },
 			"tasks"
 		);
 
@@ -34,6 +37,15 @@ describe("Insertion Pipeline Test", () => {
 		const insertData = await pipeline.insert(
 			[{ id: randomUUID(), name: "Dishes", description: "Wash the dishes" }],
 			"tasks"
+		);
+
+		expect(insertData).to.haveOwnProperty("created_at");
+	});
+
+	it("should assign a task to user", async () => {
+		const insertData = await pipeline.insert(
+			{ id: uuid2, name: "John Doe", task_id: uuid },
+			"user"
 		);
 
 		expect(insertData).to.haveOwnProperty("created_at");

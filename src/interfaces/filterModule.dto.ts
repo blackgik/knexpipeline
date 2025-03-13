@@ -9,6 +9,7 @@ export interface IfilterFind {
 	limit?: number;
 	filterWithout?: Record<string, any> | Record<string, any>[];
 	timeFilters?: { key: string; fromTime: Date; toTime: Date };
+	aggregations?: { aggType: string; col: string; alias: string }[];
 }
 
 export interface IfilterPopulate {
@@ -23,7 +24,7 @@ export interface IfilterPopulate {
 	filterWithout?: Record<string, any> | Record<string, any>[];
 	groupBy?: string[];
 	foreignKeys?: { joinTable: string; foreignKey: string; localKey: string }[];
-	timeFilters: { key: string; fromTime: Date; toTime: Date };
+	timeFilters: { key: string; fromTime: Date; toTime: Date } | null;
 	aggregations?: { aggType: string; col: string; alias: string }[];
-	filterRaw?: string[];
+	filterRaw?: string[] | null;
 }

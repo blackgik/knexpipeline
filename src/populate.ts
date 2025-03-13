@@ -25,7 +25,7 @@ export const findAndJoinTableFetch = async (
 			Joiner.joinTable,
 			`${primaryTble}.${Joiner.foreignKey}`,
 			"=",
-			`${Joiner.localKey}`
+			`${Joiner.joinTable}.${Joiner.localKey}`
 		);
 	}
 
@@ -42,7 +42,10 @@ export const findAndJoinTableFetch = async (
 		options.filterWithout.forEach((filter: Record<string, any>) => {
 			query = query.orWhereNot(filter);
 		});
-	} else if (options.filterWithout) {
+	} else if (
+		options.filterWithout &&
+		Object.keys(options.filterWithout).length
+	) {
 		query = query.whereNot(options.filterWithout);
 	}
 
@@ -53,8 +56,8 @@ export const findAndJoinTableFetch = async (
 	}
 
 	if (options.searchWord) {
-		query = query.andWhere((qb) => {
-			qb.where((innerQB) => {
+		query = query.andWhere((qb: Knex) => {
+			qb.where((innerQB: Knex) => {
 				options.searchkeys.forEach((searchKey, index) => {
 					if (index === 0) {
 						innerQB.where(searchKey, "like", `%${options.searchWord}%`);
@@ -66,7 +69,7 @@ export const findAndJoinTableFetch = async (
 		});
 	}
 
-	if (options.timeFilters) {
+	if (options.timeFilters?.key) {
 		query = query.whereBetween(options.timeFilters.key, [
 			options.timeFilters.fromTime,
 			options.timeFilters.toTime
@@ -82,25 +85,27 @@ export const findAndJoinTableFetch = async (
 		});
 	}
 
-	query = query.groupBy(options.groupBy);
-
-	const queryClone = query.clone();
-
-	const count = await queryClone.count("* as count");
+	if (options.groupBy.length) {
+		query = query.groupBy(options.groupBy);
+	}
 
 	if (needsPagination) {
+		const queryClone = query.clone();
+
+		const count = await queryClone.count("* as count");
+
 		const result = await query
 			.orderBy(options.orderBy.col, options.orderBy.order)
 			.offset(options.offset)
 			.limit(options.limit);
 
 		return { count: count.length || 0, result };
+	} else {
+		const result = await query.orderBy(
+			options.orderBy.col,
+			options.orderBy.order
+		);
+
+		return { result };
 	}
-
-	const result = await query.orderBy(
-		options.orderBy.col,
-		options.orderBy.order
-	);
-
-	return { result };
 };
