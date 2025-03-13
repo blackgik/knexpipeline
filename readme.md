@@ -19,7 +19,7 @@ reusable functions.
 ## Installation
 
 ```sh
-npm install knexPipeline
+npm install knex-pipeline
 ```
 
 ## Usage
@@ -194,6 +194,7 @@ This package is open-source and available under the [MIT License](LICENSE).
 ## Contributions
 
 Contributions are welcome! Please open an issue or submit a pull request.
+Fork the repo from [GITHUB:](https://github.com/blackgik/knexpipeline/)
 
 ## Author
 
