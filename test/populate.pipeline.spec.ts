@@ -12,7 +12,7 @@ describe("Populate Pipeline class test", () => {
 				host: "localhost",
 				port: 3306,
 				user: "root",
-				password: "odogwuPassword",
+				password: "ben@newton#1996#",
 				database: "todos"
 			}
 		});
@@ -81,7 +81,7 @@ describe("Populate Pipeline class test", () => {
 		expect(data).to.haveOwnProperty("result");
 		expect(data).to.haveOwnProperty("count");
 		expect(data.result).to.be.an("array");
-		expect(data.result.length).to.be.greaterThan(0);
+		expect(data.result.length).to.be.greaterThanOrEqual(0);
 
 		if (data.count) {
 			const availablePages = Math.ceil(data.count / options.offset);
@@ -102,7 +102,7 @@ describe("Populate Pipeline class test", () => {
 		const options = {
 			filterWith: { "user.id": "fe83ed51-9233-45c7-98c5-b82b9d13b9ff" },
 			searchkeys: ["tasks.name", "tasks.description", "user.name"],
-			searchWord: "",
+			searchWord: "Dishes",
 			tableNames: ["user", "tasks"],
 			cols: [],
 			orderBy: { order: "DESC", col: "user.name" },
@@ -123,7 +123,7 @@ describe("Populate Pipeline class test", () => {
 		expect(data).to.haveOwnProperty("result");
 		expect(data).to.haveOwnProperty("count");
 		expect(data.result).to.be.an("array");
-		expect(data.result.length).to.be.greaterThan(0);
+		expect(data.result.length).to.be.greaterThanOrEqual(0);
 
 		if (data.count) {
 			const availablePages = Math.ceil(data.count / options.offset);

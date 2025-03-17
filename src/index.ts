@@ -1,11 +1,13 @@
 import { Knex } from "knex";
 import { countItemsInDB } from "./count";
 import { findAllIemsNoPopulate } from "./find";
-import { IfilterFind, IfilterPopulate } from "./interfaces";
+import { IfilterFind, IfilterGraphOps, IfilterPopulate } from "./interfaces";
 import { findOneItem } from "./findOne";
 import { insertItemIntoDatabase } from "./insert";
 import { findAndJoinTableFetch } from "./populate";
 import { updateItemSinDatabase } from "./update";
+import { amountTimeGetGraphData } from "./graph";
+import { deleteItemsFromList } from "./delete";
 
 export class Pipeline {
 	public dbconnection;
@@ -79,6 +81,23 @@ export class Pipeline {
 			table,
 			filterWith,
 			this.dbconnection
+		);
+	}
+
+	async amountTimeGraphPlot(options: IfilterGraphOps) {
+		return await amountTimeGetGraphData(options, this.dbconnection);
+	}
+
+	async deleleitem(
+		filterWith: Record<string, any>[] | Record<string, any>,
+		table: string,
+		filterWithout?: Record<string, any> | Record<string, any>[]
+	) {
+		return await deleteItemsFromList(
+			filterWith,
+			table,
+			this.dbconnection,
+			filterWithout
 		);
 	}
 }

@@ -28,3 +28,14 @@ export interface IfilterPopulate {
 	aggregations?: { aggType: string; col: string; alias: string }[];
 	filterRaw?: string[] | null;
 }
+
+export interface IfilterGraphOps {
+	timeFilter: { startDate: Date; endDate: Date };
+	table: string;
+	filterBy: string; // year, month, last30Days, thisWeek, today, custom, lastMonth - type
+	monyrDefault: number;
+	yearDefault: number;
+	timeChoiceField: string;
+	sumChoiceField: string;
+	dataFilter: Record<string, any>;
+}

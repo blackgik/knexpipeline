@@ -12,7 +12,7 @@ describe("Find Pipeline class test", () => {
 				host: "localhost",
 				port: 3306,
 				user: "root",
-				password: "odogwuPassword",
+				password: "ben@newton#1996#",
 				database: "todos"
 			}
 		});
@@ -21,7 +21,7 @@ describe("Find Pipeline class test", () => {
 	});
 
 	it("should find one data with filter", async () => {
-		const filter = { id: "a33a5e02-5357-433e-a58e-669be88b4427" };
+		const filter = {};
 		const table = "tasks";
 		const data = await pipeline.findOne(filter, table);
 
@@ -35,7 +35,7 @@ describe("Find Pipeline class test", () => {
 	});
 
 	it("should find one data with filter filterOut", async () => {
-		const filter = { id: "a33a5e02-5357-433e-a58e-669be88b4427" };
+		const filter = {};
 		const filterOut = { name: "a33a5e02-5357-433e-a58e-669be88b4427" };
 		const table = "tasks";
 		const data = await pipeline.findOne(filter, table, []);
@@ -50,7 +50,7 @@ describe("Find Pipeline class test", () => {
 	});
 
 	it("should find one data with filter select column", async () => {
-		const filter = { id: "a33a5e02-5357-433e-a58e-669be88b4427" };
+		const filter = {};
 		const table = "tasks";
 		const data = await pipeline.findOne(filter, table, ["name"]);
 

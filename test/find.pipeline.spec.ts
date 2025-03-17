@@ -12,7 +12,7 @@ describe("Find Pipeline class test", () => {
 				host: "localhost",
 				port: 3306,
 				user: "root",
-				password: "odogwuPassword",
+				password: "ben@newton#1996#",
 				database: "todos"
 			}
 		});
