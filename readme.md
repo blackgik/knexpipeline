@@ -182,7 +182,7 @@ const filterOps = {
 
 const graph = await pipeline.amountTimeGraphPlot(filterOps);
 
-// filterOps - see table below
+// IfilterGraphOps - see table below
 ```
 
 ### Delete
@@ -238,7 +238,7 @@ const user = await pipeline.deleleItem({ id: 1 }, "users", {});
 | aggregations  | { aggType: string; col: string; alias: string }[]?             | Aggregation queries (optional)                       |
 | filterRaw     | string[]?                                                      | Raw SQL filters (optional)                           |
 
-#### Parameters:
+#### IfilterGraphOps:
 
 | Parameter         | Type                                 | Description                                                                                         |
 | ----------------- | ------------------------------------ | --------------------------------------------------------------------------------------------------- |
