@@ -88,7 +88,7 @@ export class Pipeline {
 		return await amountTimeGetGraphData(options, this.dbconnection);
 	}
 
-	async deleleitem(
+	async deleleItem(
 		filterWith: Record<string, any>[] | Record<string, any>,
 		table: string,
 		filterWithout?: Record<string, any> | Record<string, any>[]

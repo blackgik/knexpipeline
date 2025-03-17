@@ -24,7 +24,7 @@ describe("Delete Pipeline class test for amount vs time", () => {
 		const filter = { id: "01140176-817b-49e0-b903-8158e7479776" };
 		const table = "tasks";
 
-		const deleteItem = await pipeline.deleleitem(filter, table);
+		const deleteItem = await pipeline.deleleItem(filter, table);
 
 		expect(deleteItem).to.be.a("number");
 	});
@@ -35,7 +35,7 @@ describe("Delete Pipeline class test for amount vs time", () => {
 
 		const filterOut = { name: "Dishes" };
 
-		const deleteItem = await pipeline.deleleitem(filter, table, filterOut);
+		const deleteItem = await pipeline.deleleItem(filter, table, filterOut);
 
 		expect(deleteItem).to.be.a("number");
 	});
@@ -46,7 +46,7 @@ describe("Delete Pipeline class test for amount vs time", () => {
 
 		const filterOut = { id: "066261a1-1498-4a47-b32a-da8725fbb61b" };
 
-		const deleteItem = await pipeline.deleleitem(filter, table, filterOut);
+		const deleteItem = await pipeline.deleleItem(filter, table, filterOut);
 
 		expect(deleteItem).to.be.a("number");
 	});

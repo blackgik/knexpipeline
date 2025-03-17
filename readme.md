@@ -35,7 +35,7 @@ const db: Knex = knex({
 	}
 });
 
-const pipeline = new Pipeline(db, "user_module");
+const pipeline = new Pipeline(db, "mysql");
 ```
 
 ## Methods
@@ -62,7 +62,8 @@ Finds multiple records with optional pagination.
 
 const results = await pipeline.find(options: IfilterFind, needsPagination: boolean)
 
-## Example
+// EXAMPLE
+
 const results = await pipeline.find(
 	{
 		filterWith: { role: "admin" },
@@ -89,7 +90,8 @@ const user = await pipeline.findOne(
 		filterWithout?: Record<string, any> | Record<string, any>[]
 	)
 
-## Example
+// EXAMPLE
+
 const user = await pipeline.findOne({ id: 1 }, "users", ["name", "email"]);
 ```
 
@@ -104,7 +106,8 @@ await pipeline.insert(
 		table: string
 	)
 
-## Example
+// EXAMPLE
+
 await pipeline.insert({ name: "John Doe", email: "john@example.com" }, "users");
 ```
 
@@ -117,7 +120,8 @@ aggregation.
 
 const results = await pipeline.populate(options: IfilterPopulate, needsPagination: boolean)
 
-## Example
+// EXAMPLE
+
 const results = await pipeline.populate(
 	{
 		filterWith: { status: "active" },
@@ -146,8 +150,55 @@ await pipeline.update(
 		table: string
 	)
 
-## Example 
+// EXAMPLE
+
 await pipeline.update({ status: "inactive" }, { id: 1 }, "users");
+```
+
+### Amount/Time Graph Plot
+
+Plots graphs for the summation of a fields againt time ususally created_at but
+you can choose the field time you have defined your column with
+
+```typescript
+const graph =  await pipeline.amountTimeGraphPlot(options: IfilterGraphOps)
+
+// EXAMPLE
+
+const fromTime = new Date(new Date().getTime() - 1000 * 60 * 60 * 24 * 60);
+const thisMonth = new Date().getMonth();
+const thisYear = new Date().getFullYear();
+
+const filterOps = {
+			timeFilter: { startDate: fromTime, endDate: new Date() },
+			table: "tasks",
+			filterBy: "custom",
+			monyrDefault: thisMonth + 1,
+			yearDefault: thisYear,
+			timeChoiceField: "created_at",
+			sumChoiceField: "amount",
+			dataFilter: { name: "Dishes" }
+		};
+
+const graph = await pipeline.amountTimeGraphPlot(filterOps);
+
+// filterOps - see table below
+```
+
+### Delete
+
+Finds a single record based on filter criteria.
+
+```typescript
+const user = await pipeline.deleleItem(
+		filterWith: Record<string, any>[] | Record<string, any>,
+		table: string,
+		filterWithout?: Record<string, any> | Record<string, any>[]
+	)
+
+// EXAMPLE
+
+const user = await pipeline.deleleItem({ id: 1 }, "users", {});
 ```
 
 ## Parameter Details
@@ -187,14 +238,30 @@ await pipeline.update({ status: "inactive" }, { id: 1 }, "users");
 | aggregations  | { aggType: string; col: string; alias: string }[]?             | Aggregation queries (optional)                       |
 | filterRaw     | string[]?                                                      | Raw SQL filters (optional)                           |
 
+#### Parameters:
+
+| Parameter         | Type                                 | Description                                                                                         |
+| ----------------- | ------------------------------------ | --------------------------------------------------------------------------------------------------- |
+| `timeFilter`      | `{ startDate: Date; endDate: Date }` | The time range for filtering data.                                                                  |
+| `table`           | `string`                             | The name of the table to query.                                                                     |
+| `filterBy`        | `string`                             | The time grouping type (`year`, `month`, `last30Days`, `thisWeek`, `today`, `custom`, `lastMonth`). |
+| `monyrDefault`    | `number`                             | Default month-year value for filtering.                                                             |
+| `yearDefault`     | `number`                             | Default year value for filtering.                                                                   |
+| `timeChoiceField` | `string`                             | The database field used for time-based grouping.                                                    |
+| `sumChoiceField`  | `string`                             | The field whose values will be summed for graph plotting.                                           |
+| `dataFilter`      | `Record<string, any>`                | Additional filter conditions for the query.                                                         |
+
 ## License
 
 This package is open-source and available under the [MIT License](LICENSE).
 
 ## Contributions
 
-Contributions are welcome! Please open an issue or submit a pull request.
-Fork the repo from [GITHUB:](https://github.com/blackgik/knexpipeline/)
+Currently, Knex-Pipeline supports only MySQL, but in the coming months, support
+for other SQL databases will be added. Contributions are welcome! Fork the
+repository and submit your pull requests.
+
+Fork the repo from [GITHUB](https://github.com/blackgik/knexpipeline/)
 
 ## Author
 
