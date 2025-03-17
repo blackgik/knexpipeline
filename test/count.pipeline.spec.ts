@@ -12,7 +12,7 @@ describe("Count Pipeline class test", () => {
 				host: "localhost",
 				port: 3306,
 				user: "root",
-				password: "ben@newton#1996#",
+				password: "oodogwupassword",
 				database: "todos"
 			}
 		});
