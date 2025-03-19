@@ -1,18 +1,21 @@
 {
 	"compilerOptions": {
-		"lib": ["ESNext", "DOM"],
-		"module": "ESNext",
-		"moduleResolution": "Bundler",
-		"target": "ESNext",
-		"baseUrl": "src/",
-		"rootDir": "src/",
-		"outDir": "dist",
-		"esModuleInterop": true,
-		"resolveJsonModule": true,
-		"allowJs": true,
-		"skipLibCheck": true,
-		"allowSyntheticDefaultImports": true
+	  "module": "NodeNext", 
+	  "moduleResolution": "NodeNext",
+	  "target": "ESNext",
+	  "baseUrl": "./", 
+	  "paths": {
+		"@src/*": ["src/*"], 
+		"@test/*": ["test/*"]
+	  },
+	  "rootDir": "./",
+	  "outDir": "dist",
+	  "strict": true,
+	  "esModuleInterop": true,
+	  "resolveJsonModule": true,
+	  "allowJs": true
 	},
-	"include": ["src"],
+	"include": ["src", "test"],
 	"exclude": ["node_modules", "dist"]
-}
+  }
+  
