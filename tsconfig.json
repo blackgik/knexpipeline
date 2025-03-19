@@ -1,21 +1,18 @@
 {
 	"compilerOptions": {
-	  "module": "NodeNext", 
-	  "moduleResolution": "NodeNext",
-	  "target": "ESNext",
-	  "baseUrl": "./", 
-	  "paths": {
-		"@src/*": ["src/*"], 
-		"@test/*": ["test/*"]
-	  },
-	  "rootDir": "./",
-	  "outDir": "dist",
-	  "strict": true,
-	  "esModuleInterop": true,
-	  "resolveJsonModule": true,
-	  "allowJs": true
+		"module": "NodeNext",
+		"moduleResolution": "NodeNext",
+		"target": "ESNext",
+		"baseUrl": "./",
+		"rootDir": "src",
+		"outDir": "dist",
+		"strict": true,
+		"esModuleInterop": true,
+		"resolveJsonModule": true,
+		"allowJs": true,
+		"declaration": true, // ✅ Generates .d.ts files
+		"declarationMap": true
 	},
-	"include": ["src", "test"],
+	"include": ["src"],
 	"exclude": ["node_modules", "dist"]
-  }
-  
+}
