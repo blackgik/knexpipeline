@@ -1,26 +1,27 @@
 {
-  "name": "knex-pipeline",
-  "version": "1.1.5",
-  "main": "src/index.ts",
-  "license": "MIT",
-  "private": false,
-  "scripts": {
-    "test": "mocha --require ts-node/register test/**.spec.ts"
-  },
-  "devDependencies": {
-    "@types/chai": "^4.3.5",
-    "@types/knex": "^0.16.1",
-    "@types/mocha": "^10.0.10",
-    "@types/mysql": "^2.15.26",
-    "@types/node": "^22.13.10",
-    "chai": "^4.3.7",
-    "mocha": "^11.1.0",
-    "nyc": "^17.1.0",
-    "ts-node": "^10.9.2",
-    "typescript": "^5.8.2"
-  },
-  "dependencies": {
-    "knex": "^3.1.0",
-    "mysql": "^2.18.1"
-  }
+	"name": "knex-pipeline",
+	"version": "1.1.6",
+	"main": "dist/index.js",
+	"types": "dist/index.d.ts",
+	"license": "MIT",
+	"private": false,
+	"scripts": {
+		"test": "mocha --require ts-node/register test/**.spec.ts"
+	},
+	"devDependencies": {
+		"@types/chai": "^4.3.5",
+		"@types/knex": "^0.16.1",
+		"@types/mocha": "^10.0.10",
+		"@types/mysql": "^2.15.26",
+		"@types/node": "^22.13.10",
+		"chai": "^4.3.7",
+		"mocha": "^11.1.0",
+		"nyc": "^17.1.0",
+		"ts-node": "^10.9.2",
+		"typescript": "^5.8.2"
+	},
+	"dependencies": {
+		"knex": "^3.1.0",
+		"mysql": "^2.18.1"
+	}
 }
