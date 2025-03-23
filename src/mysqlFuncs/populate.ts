@@ -1,5 +1,5 @@
 import { Knex } from "knex";
-import { IfilterPopulate } from "./interfaces";
+import { IfilterPopulate } from "../interfaces";
 
 export const findAndJoinTableFetch = async (
 	options: IfilterPopulate,

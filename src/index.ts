@@ -1,13 +1,13 @@
 import { Knex } from "knex";
-import { countItemsInDB } from "./count";
-import { findAllIemsNoPopulate } from "./find";
+import { countItemsInDB } from "./mysqlFuncs/count";
+import { findAllIemsNoPopulate } from "./mysqlFuncs/find";
 import { IfilterFind, IfilterGraphOps, IfilterPopulate } from "./interfaces";
-import { findOneItem } from "./findOne";
-import { insertItemIntoDatabase } from "./insert";
-import { findAndJoinTableFetch } from "./populate";
-import { updateItemSinDatabase } from "./update";
-import { amountTimeGetGraphData } from "./graph";
-import { deleteItemsFromList } from "./delete";
+import { findOneItem } from "./mysqlFuncs/findOne";
+import { insertItemIntoDatabase } from "./mysqlFuncs/insert";
+import { findAndJoinTableFetch } from "./mysqlFuncs/populate";
+import { updateItemSinDatabase } from "./mysqlFuncs/update";
+import { amountTimeGetGraphData } from "./mysqlFuncs/graph";
+import { deleteItemsFromList } from "./mysqlFuncs/delete";
 
 export class Pipeline {
 	public dbconnection;

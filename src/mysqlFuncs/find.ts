@@ -1,5 +1,5 @@
 import { Knex } from "knex";
-import { IfilterFind } from "./interfaces";
+import { IfilterFind } from "../interfaces";
 
 export const findAllIemsNoPopulate = async (
 	options: IfilterFind,

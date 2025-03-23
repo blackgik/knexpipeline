@@ -1,5 +1,5 @@
 import { Knex } from "knex";
-import { IfilterGraphOps } from "./interfaces";
+import { IfilterGraphOps } from "../interfaces";
 
 export const amountTimeGetGraphData = async (
 	filterOps: IfilterGraphOps,
