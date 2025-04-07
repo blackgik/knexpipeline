@@ -1,0 +1,1 @@
+{"version":3,"file":"graph.d.ts","sourceRoot":"","sources":["../../src/mysqlFuncs/graph.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,IAAI,EAAE,MAAM,MAAM,CAAC;AAC5B,OAAO,EAAE,eAAe,EAAE,MAAM,eAAe,CAAC;AAEhD,eAAO,MAAM,sBAAsB,GAClC,WAAW,eAAe,EAC1B,MAAM,IAAI,iBAqKV,CAAC"}

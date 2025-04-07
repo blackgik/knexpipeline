@@ -1,14 +1,15 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Pipeline = void 0;
-const count_1 = require("./count");
-const find_1 = require("./find");
-const findOne_1 = require("./findOne");
-const insert_1 = require("./insert");
-const populate_1 = require("./populate");
-const update_1 = require("./update");
-const graph_1 = require("./graph");
-const delete_1 = require("./delete");
+const count_1 = require("./mysqlFuncs/count");
+const find_1 = require("./mysqlFuncs/find");
+const findOne_1 = require("./mysqlFuncs/findOne");
+const insert_1 = require("./mysqlFuncs/insert");
+const populate_1 = require("./mysqlFuncs/populate");
+const update_1 = require("./mysqlFuncs/update");
+const graph_1 = require("./mysqlFuncs/graph");
+const delete_1 = require("./mysqlFuncs/delete");
+const summation_1 = require("./mysqlFuncs/summation");
 class Pipeline {
     dbconnection;
     module;
@@ -41,6 +42,9 @@ class Pipeline {
     }
     async deleleItem(filterWith, table, filterWithout) {
         return await (0, delete_1.deleteItemsFromList)(filterWith, table, this.dbconnection, filterWithout);
+    }
+    async sum(options) {
+        return await (0, summation_1.amountSummation)(this.dbconnection, options);
     }
 }
 exports.Pipeline = Pipeline;

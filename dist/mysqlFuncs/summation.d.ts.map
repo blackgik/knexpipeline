@@ -1,0 +1,1 @@
+{"version":3,"file":"summation.d.ts","sourceRoot":"","sources":["../../src/mysqlFuncs/summation.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,IAAI,EAAE,MAAM,MAAM,CAAC;AAC5B,OAAO,EAAE,gBAAgB,EAAE,MAAM,gBAAgB,CAAC;AAElD,eAAO,MAAM,eAAe,GAC3B,cAAc,IAAI,EAClB,SAAS,gBAAgB,KACvB,OAAO,CAAC;IAAE,GAAG,EAAE,MAAM,CAAA;CAAE,CAgCzB,CAAC"}

@@ -1,5 +1,5 @@
 import { Knex } from "knex";
-import { IfilterFind, IfilterGraphOps, IfilterPopulate } from "./interfaces";
+import { IfilterFind, IfilterGraphOps, IfilterPopulate, IfilterSummation } from "./interfaces";
 export declare class Pipeline {
     dbconnection: Knex<any, any[]>;
     module: string;
@@ -122,9 +122,9 @@ export declare class Pipeline {
     }>;
     populate(options: IfilterPopulate, needsPagination: boolean): Promise<{
         count: number;
-        result: any[];
+        result: any[] | any[];
     } | {
-        result: any[];
+        result: any[] | any[];
         count?: undefined;
     }>;
     update(data: Record<string, any> | Record<string, any>[], filterWith: Record<string, any>, table: string): Promise<{
@@ -134,5 +134,8 @@ export declare class Pipeline {
     }>;
     amountTimeGraphPlot(options: IfilterGraphOps): Promise<any>;
     deleleItem(filterWith: Record<string, any>[] | Record<string, any>, table: string, filterWithout?: Record<string, any> | Record<string, any>[]): Promise<number>;
+    sum(options: IfilterSummation): Promise<{
+        sum: number;
+    }>;
 }
 //# sourceMappingURL=index.d.ts.map
