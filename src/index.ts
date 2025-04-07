@@ -1,13 +1,19 @@
 import { Knex } from "knex";
 import { countItemsInDB } from "./mysqlFuncs/count";
 import { findAllIemsNoPopulate } from "./mysqlFuncs/find";
-import { IfilterFind, IfilterGraphOps, IfilterPopulate } from "./interfaces";
+import {
+	IfilterFind,
+	IfilterGraphOps,
+	IfilterPopulate,
+	IfilterSummation
+} from "./interfaces";
 import { findOneItem } from "./mysqlFuncs/findOne";
 import { insertItemIntoDatabase } from "./mysqlFuncs/insert";
 import { findAndJoinTableFetch } from "./mysqlFuncs/populate";
 import { updateItemSinDatabase } from "./mysqlFuncs/update";
 import { amountTimeGetGraphData } from "./mysqlFuncs/graph";
 import { deleteItemsFromList } from "./mysqlFuncs/delete";
+import { amountSummation } from "./mysqlFuncs/summation";
 
 export class Pipeline {
 	public dbconnection;
@@ -99,5 +105,9 @@ export class Pipeline {
 			this.dbconnection,
 			filterWithout
 		);
+	}
+
+	async sum(options: IfilterSummation) {
+		return await amountSummation(this.dbconnection, options);
 	}
 }

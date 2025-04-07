@@ -18,7 +18,7 @@ export const findAndJoinTableFetch = async (
 
 	const primaryTble = options.tableNames[0];
 
-	let query = dbconnection.select(options.cols).from(primaryTble);
+	let query = dbconnection.from(primaryTble);
 
 	for (let Joiner of options.foreignKeys) {
 		query = query.join(
@@ -28,6 +28,8 @@ export const findAndJoinTableFetch = async (
 			`${Joiner.joinTable}.${Joiner.localKey}`
 		);
 	}
+
+	query = query.select(options.cols)
 
 	if (Array.isArray(options.filterWith)) {
 		options.filterWith.forEach((filter: Record<string, any>) => {

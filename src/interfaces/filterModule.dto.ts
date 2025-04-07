@@ -39,3 +39,13 @@ export interface IfilterGraphOps {
 	sumChoiceField: string;
 	dataFilter: Record<string, any>;
 }
+
+export interface IfilterSummation {
+	timeFilters: { key: string; fromTime: Date; toTime: Date };
+	fromTime: Date;
+	toTime: Date;
+	table: string;
+	filterWith: Record<string, any> | Record<string, any>[];
+	filterWithout?: Record<string, any> | Record<string, any>[];
+	sumField: string;
+}
