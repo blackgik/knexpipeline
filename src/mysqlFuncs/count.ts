@@ -4,7 +4,8 @@ export const countItemsInDB = async (
 	dbconnection: Knex,
 	filterWith: Record<string, any>[] | Record<string, any>, // can be an array for or values OR and for AND values
 	table: string,
-	filterWithout: Record<string, any> | Record<string, any>[] = {}
+	filterWithout: Record<string, any> | Record<string, any>[] = {},
+	timeFilters?: { key: string; fromTime: Date; toTime: Date }
 ) => {
 	let query = dbconnection(table).count();
 
@@ -25,6 +26,12 @@ export const countItemsInDB = async (
 		query = query.whereNot(filterWithout);
 	}
 
+	if (timeFilters?.key) {
+		query = query.whereBetween(timeFilters.key, [
+			timeFilters.fromTime,
+			timeFilters.toTime
+		]);
+	}
 	const count = await query;
 
 	return { count };

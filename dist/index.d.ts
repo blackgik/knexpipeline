@@ -4,7 +4,11 @@ export declare class Pipeline {
     dbconnection: Knex<any, any[]>;
     module: string;
     constructor(dbconnection: Knex, module: string);
-    count(filterWith: Record<string, any>[] | Record<string, any>, table: string, filterWithout?: Record<string, any> | Record<string, any>[]): Promise<{
+    count(filterWith: Record<string, any>[] | Record<string, any>, table: string, filterWithout?: Record<string, any> | Record<string, any>[], timeFilters?: {
+        key: string;
+        fromTime: Date;
+        toTime: Date;
+    }): Promise<{
         count: {
             [k: string]: string | number;
         }[];

@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.countItemsInDB = void 0;
 const countItemsInDB = async (dbconnection, filterWith, // can be an array for or values OR and for AND values
-table, filterWithout = {}) => {
+table, filterWithout = {}, timeFilters) => {
     let query = dbconnection(table).count();
     if (Array.isArray(filterWith)) {
         filterWith.forEach((filter) => {
@@ -20,6 +20,12 @@ table, filterWithout = {}) => {
     }
     else if (filterWithout) {
         query = query.whereNot(filterWithout);
+    }
+    if (timeFilters?.key) {
+        query = query.whereBetween(timeFilters.key, [
+            timeFilters.fromTime,
+            timeFilters.toTime
+        ]);
     }
     const count = await query;
     return { count };

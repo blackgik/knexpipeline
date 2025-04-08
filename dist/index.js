@@ -17,9 +17,9 @@ class Pipeline {
         this.dbconnection = dbconnection;
         this.module = module;
     }
-    async count(filterWith, table, filterWithout) {
+    async count(filterWith, table, filterWithout, timeFilters) {
         // initiating count steps
-        return await (0, count_1.countItemsInDB)(this.dbconnection, filterWith, table, filterWithout);
+        return await (0, count_1.countItemsInDB)(this.dbconnection, filterWith, table, filterWithout, timeFilters);
     }
     async find(options, needsPagination) {
         return await (0, find_1.findAllIemsNoPopulate)(options, this.dbconnection, needsPagination);

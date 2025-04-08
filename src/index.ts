@@ -27,14 +27,16 @@ export class Pipeline {
 	async count(
 		filterWith: Record<string, any>[] | Record<string, any>,
 		table: string,
-		filterWithout?: Record<string, any> | Record<string, any>[]
+		filterWithout?: Record<string, any> | Record<string, any>[],
+		timeFilters?: { key: string; fromTime: Date; toTime: Date }
 	) {
 		// initiating count steps
 		return await countItemsInDB(
 			this.dbconnection,
 			filterWith,
 			table,
-			filterWithout
+			filterWithout,
+			timeFilters
 		);
 	}
 
