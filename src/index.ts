@@ -29,7 +29,7 @@ export class Pipeline {
 		table: string,
 		filterWithout?: Record<string, any> | Record<string, any>[],
 		timeFilters?: { key: string; fromTime: Date; toTime: Date }
-	) {
+	): Promise<{ "count(*)": number }[] | any> {
 		// initiating count steps
 		return await countItemsInDB(
 			this.dbconnection,
@@ -40,7 +40,19 @@ export class Pipeline {
 		);
 	}
 
-	async find(options: IfilterFind, needsPagination: boolean) {
+	async find(
+		options: IfilterFind,
+		needsPagination: boolean
+	): Promise<
+		| {
+				count: any[];
+				result: any[];
+		  }
+		| {
+				result: any[];
+				count?: undefined;
+		  }
+	> {
 		return await findAllIemsNoPopulate(
 			options,
 			this.dbconnection,
@@ -53,7 +65,7 @@ export class Pipeline {
 		table: string,
 		col?: string[],
 		filterWithout?: Record<string, any> | Record<string, any>[]
-	) {
+	): Promise<Record<string, any>> {
 		col = col?.length ? col : [];
 		return await findOneItem(
 			filterWith,
@@ -67,11 +79,26 @@ export class Pipeline {
 	async insert(
 		data: Record<string, any> | Record<string, any>[],
 		table: string
-	) {
+	): Promise<{
+		created_at: Date;
+		updated_at: Date;
+	}> {
 		return await insertItemIntoDatabase(data, table, this.dbconnection);
 	}
 
-	async populate(options: IfilterPopulate, needsPagination: boolean) {
+	async populate(
+		options: IfilterPopulate,
+		needsPagination: boolean
+	): Promise<
+		| {
+				count: number;
+				result: any[] | any[];
+		  }
+		| {
+				result: any[] | any[];
+				count?: undefined;
+		  }
+	> {
 		return await findAndJoinTableFetch(
 			options,
 			needsPagination,
@@ -83,7 +110,11 @@ export class Pipeline {
 		data: Record<string, any> | Record<string, any>[],
 		filterWith: Record<string, any>,
 		table: string
-	) {
+	): Promise<{
+		updateData: number;
+		data: Record<string, any> | Record<string, any>[];
+		updated_at: Date;
+	}> {
 		return await updateItemSinDatabase(
 			data,
 			table,
@@ -92,7 +123,9 @@ export class Pipeline {
 		);
 	}
 
-	async amountTimeGraphPlot(options: IfilterGraphOps) {
+	async amountTimeGraphPlot(
+		options: IfilterGraphOps
+	): Promise<Array<Array<{ x_axis: string; y_axis: number }>>> {
 		return await amountTimeGetGraphData(options, this.dbconnection);
 	}
 
@@ -100,7 +133,7 @@ export class Pipeline {
 		filterWith: Record<string, any>[] | Record<string, any>,
 		table: string,
 		filterWithout?: Record<string, any> | Record<string, any>[]
-	) {
+	): Promise<number> {
 		return await deleteItemsFromList(
 			filterWith,
 			table,

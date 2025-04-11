@@ -11,7 +11,8 @@
 		"resolveJsonModule": true,
 		"allowJs": true,
 		"declaration": true, // ✅ Generates .d.ts files
-		"declarationMap": true
+		"declarationMap": true,
+		"lib": ["ES2020", "ES2022", "ESNext", "ESNext.Array"]
 	},
 	"include": ["src"],
 	"exclude": ["node_modules", "dist"]

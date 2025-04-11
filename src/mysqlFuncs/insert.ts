@@ -7,5 +7,5 @@ export const insertItemIntoDatabase = async (
 ) => {
 	await dbconnection(table).insert(data);
 
-	return { ...data, created_at: new Date(), updated_at: new Date() };
+	return { created_at: new Date(), updated_at: new Date() };
 };
