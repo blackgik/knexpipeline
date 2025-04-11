@@ -1,12 +1,13 @@
 {
 	"name": "knex-pipeline",
-	"version": "1.1.13",
+	"version": "1.1.14",
 	"main": "dist/index.js",
 	"types": "dist/index.d.ts",
 	"license": "MIT",
 	"private": false,
 	"scripts": {
-		"test": "mocha --require ts-node/register test/**.spec.ts"
+		"test": "mocha --require ts-node/register test/**.spec.ts",
+		"build": "tsc"
 	},
 	"devDependencies": {
 		"@types/chai": "^4.3.5",
